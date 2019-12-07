@@ -10,11 +10,13 @@ defmodule HttpEditor do
   end
 
   def site_blocked?(site) do
+    filtered_site = String.replace(site, ~r/\/(.*)/, "")
 
     Enum.member?([
       "sitensfw.com.br",
-      "bfhdzmlcrnswvkxt.neverssl.com",
-      "bfhdzmlcrnswvkxt.neverssl.com/online"
-    ], site)
+      "bfhdzmlcrnswvkxt.neverssl.com"
+    ], filtered_site)
   end
+
+
 end
