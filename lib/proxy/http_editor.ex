@@ -8,4 +8,13 @@ defmodule HttpEditor do
   def edit_body(body) do
     String.replace(body, ~r/h\d/, "h6")
   end
+
+  def site_blocked?(site) do
+
+    Enum.member?([
+      "sitensfw.com.br",
+      "bfhdzmlcrnswvkxt.neverssl.com",
+      "bfhdzmlcrnswvkxt.neverssl.com/online"
+    ], site)
+  end
 end

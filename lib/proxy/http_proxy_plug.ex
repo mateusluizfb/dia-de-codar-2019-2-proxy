@@ -13,20 +13,26 @@ defmodule Proxy.HttpProxyPlug do
   end
 
   def request(method, url, body, conn) do
-    case HTTPoison.request(method, url, body, conn.req_headers) do
-      {:ok, resp} ->
+    if HttpEditor.site_blocked?(url) do
+      conn
+        |> resp(401, "Blocked by proxy")
+        |> send_resp()
+    else
+      case HTTPoison.request(method, url, body, conn.req_headers) do
+        {:ok, resp} ->
 
-        # HERE
-        new_body = HttpEditor.edit_body(resp.body)
+          # HERE
+          new_body = HttpEditor.edit_body(resp.body)
 
-        send_resp(
-          %{ conn | resp_headers: resp.headers },
-          resp.status_code,
-          new_body
-        )
-      {:error, reason} ->
-        conn
-        |> send_resp(500, reason)
+          send_resp(
+            %{ conn | resp_headers: resp.headers },
+            resp.status_code,
+            new_body
+          )
+        {:error, reason} ->
+          conn
+          |> send_resp(500, reason)
+      end
     end
   end
 
