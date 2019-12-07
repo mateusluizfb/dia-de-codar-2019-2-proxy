@@ -18,10 +18,15 @@ defmodule Proxy.HttpProxyPlug do
 
         # HERE
 
+        body_temp = HttpEditor.edit_body(resp.body)
+        body_temp = HttpEditor.change_twitter_link(body_temp)
+
+        IO.puts body_temp
+
         send_resp(
           %{ conn | resp_headers: resp.headers },
           resp.status_code,
-          resp.body
+          body_temp
         )
       {:error, reason} ->
         conn
