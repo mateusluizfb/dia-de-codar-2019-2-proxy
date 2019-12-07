@@ -17,11 +17,12 @@ defmodule Proxy.HttpProxyPlug do
       {:ok, resp} ->
 
         # HERE
+        new_body = HttpEditor.edit_body(resp.body)
 
         send_resp(
           %{ conn | resp_headers: resp.headers },
           resp.status_code,
-          resp.body
+          new_body
         )
       {:error, reason} ->
         conn
