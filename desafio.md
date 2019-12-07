@@ -10,3 +10,13 @@ Sites apenas em HTTP:
 - http://bfhdzmlcrnswvkxt.neverssl.com/online
 - http://eu.httpbin.org/
 - http://www.columbia.edu/~fdc/sample.html?fbclid=IwAR10O1Ap4SpZBDGWHGPttF6uaO44JhXs6N8zYsqOaiRaJkkqMNsshEF4UbM
+
+:)
+- Linguagem legal e parecido com ruby
+- Sintaxe mais amigável
+- Conseguimos ver mais funcional
+- Problema legal
+
+:(
+- Teclado do Mac
+- Poderia ter um linter para avisar a gente
